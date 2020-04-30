@@ -12,9 +12,9 @@ main.on('message', message => {
 
 	function permchk() {return (message
 		                   .channel
-												.permissionsFor (message.author)
-											   .has(0x8))
-												 }
+			            .permissionsFor (message.author)
+	 			     .has(0x8))
+				}
 
 	if (message.author.bot) return
 
@@ -24,7 +24,7 @@ main.on('message', message => {
 		return }
 
   if ((message.content === '!edit') & permchk()) {return edit(message)}
-	else if (message.content === '!edit')	{return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
+  else if (message.content === '!edit')	{return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
   if (message.content.toLowerCase() === '#check'  & permchk()) {require('../edition/check.js')(message)}
   else if (message.content.toLowerCase().startsWith("#check")) {return message.reply('Action non autorisée.')}
 
@@ -49,9 +49,9 @@ main.on('message', message => {
 			    .find(r => r.name === ('etape 1'))
         )
     return message
-		        .author
-						 .createDM()
-						  .then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
+	    .author
+	     .createDM()
+		.then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
 		}
 
 })
