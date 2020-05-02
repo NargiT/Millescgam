@@ -25,17 +25,17 @@ main.on('message', message => {
 		return }
 
   if (message.content === '!edit') {return permchk(edit(message))}
-  if (message.content.toLowerCase() === '#check'  & ) {permchk(require('../edition/check.js')(message))}
+  if (message.content.toLowerCase() === '#check' ) {permchk(require('../edition/check.js')(message))}
 
   if (message.content.toLowerCase().startsWith("#etape")) {
-		permchk(
+		permchk()
 		message.com = message.content.replace("#", "")
 		message.args = message.com.slice(message.com.indexOf(':') + 2)
     let testfile = (`./edition/${message.args}.js`)
 
 		fs.access(testfile, fs.constants.F_OK, (err) => {
 				err ? message.reply(message.args + ' n\'est pas une commande, vérifez le préfixe ou la typo !') : require("." + testfile)(message) })
-  )}
+  }
 
 
 	if (message.content === "!start") {
