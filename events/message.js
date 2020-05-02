@@ -10,11 +10,12 @@ main.on('message', message => {
 
 
 
-	function permchk() {return (message
+	function permchk(fct) {if(message
 		                   .channel
-			            .permissionsFor (message.author)
-	 			     .has(0x8))
-				}
+				    .permissionsFor (message.author)
+				     .has(0x8)) {return fct}
+				else {return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
+												 }
 
 	if (message.author.bot) return
 
@@ -23,20 +24,18 @@ main.on('message', message => {
 		catch (err) {console.log(err); message.reply('Désolé, une Erreur est survenue dans le bot :( Contactez l\'administrateur ')}
 		return }
 
-  if ((message.content === '!edit') & permchk()) {return edit(message)}
-  else if (message.content === '!edit')	{return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
-  if (message.content.toLowerCase() === '#check'  & permchk()) {require('../edition/check.js')(message)}
-  else if (message.content.toLowerCase().startsWith("#check")) {return message.reply('Action non autorisée.')}
+  if (message.content === '!edit') {return permchk(edit(message))}
+  if (message.content.toLowerCase() === '#check'  & ) {permchk(require('../edition/check.js')(message))}
 
-  if (message.content.toLowerCase().startsWith("#etape") & permchk()) {
+  if (message.content.toLowerCase().startsWith("#etape")) {
+		permchk(
 		message.com = message.content.replace("#", "")
 		message.args = message.com.slice(message.com.indexOf(':') + 2)
     let testfile = (`./edition/${message.args}.js`)
 
 		fs.access(testfile, fs.constants.F_OK, (err) => {
 				err ? message.reply(message.args + ' n\'est pas une commande, vérifez le préfixe ou la typo !') : require("." + testfile)(message) })
-  }
-    else if (message.content.toLowerCase().startsWith("#etape")) {return message.reply('Action non autorisée.')}
+  )}
 
 
 	if (message.content === "!start") {
@@ -49,9 +48,9 @@ main.on('message', message => {
 			    .find(r => r.name === ('etape 1'))
         )
     return message
-	    .author
-	     .createDM()
-		.then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
+           .author
+	    .createDM()
+	     .then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
 		}
 
 })
