@@ -20,10 +20,14 @@ exports.run = (message, main) => {
 	let pos = dudeRole.indexOf(true)
 	  if (pos === 0) {return message.reply('Tapez start dans le channel général pour commencer à jouer.')}
 
-	let fail = require('../guilds/' + Serv.name + '/fail/' + pos)
-	let suc = require ('../guilds/'+ Serv.name + '/success/' + pos)
+	let fail = ''
+	try {fail = require('../guilds/' + Serv.name + '/fail/' + pos)}
+	catch (err){message.channel.send('oups, il semblerait qu\'il y ait une erreur. Parlez en au MJ')}
+	let suc = ''
+	try {suc = require ('../guilds/'+ Serv.name + '/success/' + pos)}
+	catch(err) {message.channel.send('oups, il semblerait qu\'il y ait une erreur. Parlez en au MJ')}
 	let rand = fail[Math.floor(Math.random() * fail.length)]
-console.log(ans.answers[`etape ${pos}`].code)
+
   function attchk() {
 		if (ans.answers[`etape ${pos}`].hasOwnProperty('file')) {
 			let att = new Attachment (ans.answers[`etape ${pos}`].file)

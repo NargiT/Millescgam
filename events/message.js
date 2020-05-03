@@ -2,43 +2,40 @@ let fs = require('fs')
 let main = require('../main.js')
 let answer = require('../answers/answers.js')
 let edit = require('../edition/edit.js')
-let code = require('../edition/code.js')
-
+let data = {}
 
 
 main.on('message', message => {
 
-
+  let guildPath = `./guilds/${message.channel.guild}/${message.channel.guild}.json`
+  if (fs.existsSync(guildPath)) {data = JSON.parse(fs.readFileSync(guildPath))}
 
 	function permchk(fct) {if(message
 		                   .channel
-				    .permissionsFor (message.author)
-				     .has(0x8)) {return fct}
-				else {return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
+												.permissionsFor (message.author)
+											   .has(0x8)) {return fct}
+												 else {return message.reply('Vous ne semblez pas avoir les droits nécessaires pour éditer le jeu. Seuls les administrateurs le peuvent.')}
 												 }
 
 	if (message.author.bot) return
 
 	if (message.channel.type === 'dm'){
 		try {answer.run(message, main)}
-		catch (err) {console.log(err); message.reply('Désolé, une Erreur est survenue dans le bot :( Contactez l\'administrateur ')}
+		catch (err) {console.log(err) ; message.reply('Ah! Pas de message programmé...')}
 		return }
 
-  if (message.content === '!edit') {return permchk(edit(message))}
-  if (message.content.toLowerCase() === '#check' ) {permchk(require('../edition/check.js')(message))}
+  if (message.content === '!edit') {permchk()
+  return edit(message)}
+  if (message.content === '!commandes') {permchk(); return message.channel.send({ embed: require('../edition/commandslist.js')})}
 
-  if (message.content.toLowerCase().startsWith("#etape")) {
+  if (message.content.toLowerCase().startsWith("#")) {
 		permchk()
-		message.com = message.content.replace("#", "")
-		message.args = message.com.slice(message.com.indexOf(':') + 2)
-    let testfile = (`./edition/${message.args}.js`)
-
-		fs.access(testfile, fs.constants.F_OK, (err) => {
-				err ? message.reply(message.args + ' n\'est pas une commande, vérifez le préfixe ou la typo !') : require("." + testfile)(message) })
-  }
+    require(`../edition/command.js`)(message)}
 
 
-	if (message.content === "!start") {
+
+
+	if (message.content === data.start) {
 		main
 	  .guilds
 	   .find(s => message.channel.guild)
@@ -48,9 +45,9 @@ main.on('message', message => {
 			    .find(r => r.name === ('etape 1'))
         )
     return message
-           .author
-	    .createDM()
-	     .then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
+		        .author
+						 .createDM()
+						  .then(channel => channel.send(require(`../guilds/${message.channel.guild}/success/0.js`)))
 		}
 
 })

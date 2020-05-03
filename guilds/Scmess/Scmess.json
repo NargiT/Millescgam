@@ -1,13 +1,23 @@
 {
   "answers": {
     "etape 0": {
-      "file": ""
+      "file": "https://static1.millenium.org/articles/3/36/58/53/@/1363317-tavern-upload-large-article_image_bd-1.png"
     },
-    "etape 1": {},
-    "etape 2": {},
+    "etape 1": {
+      "code": [
+        "youpi"
+      ]
+    },
+    "etape 2": {
+      "code": [
+        "encore oui"
+      ]
+    },
     "etape 3": {},
     "etape 4": {},
-    "explorateurs": {}
+    "etape 5": {},
+    "final": "GG"
   },
-  "etapes": 4
+  "etapes": 5,
+  "start": "!start"
 }

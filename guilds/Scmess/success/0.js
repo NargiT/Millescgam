@@ -1,1 +1,1 @@
-module.exports = `bienvenue`
+module.exports = `bienvenue dans le jeu de piste **yay**`
