@@ -8,4 +8,4 @@ module.exports = main
 	require('./events/message.js')
 	require('./events/guildMemberRemove.js')
 
-main.login('Njk1OTU4MTE0MzY4ODgwNzIw.Xq7Hyg.5dDMizRkgz7afYpEFg0D-LzVeV8')
+main.login('nope')
