@@ -2,17 +2,16 @@ const fs = require ('fs')
 
 module.exports = (message) => {
 let ffs = message.content.toLowerCase().replace('#','')
-console.log('here')
   if (message.content.toLowerCase().startsWith("#etape")) {
   	let name = message.content.split(':')[0].replace("#","")
     let namel = name.toLowerCase()
-console.log (message.content.toLowerCase().slice(message.content.indexOf(':') + 2))
+
     try {require(`../edition/_${message.content.toLowerCase().slice(message.content.indexOf(':') + 2)}.js`)(message, namel)}
     catch(err) {message.channel.send('Commande non reconnue vérifiez la typo (#Etape x: commande)')}
   }
 
   	else if (fs.existsSync(`./edition/_${ffs}.js`)) {
-      console.log('wut')
+
       message.channel.send ('Veuillez donner le numéro de l\'étape pour laquelle vous voulez entrer le code sans "#"')
       .then(() => {
   	      let f = m => (Number(m.content ) !== null)

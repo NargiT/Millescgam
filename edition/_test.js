@@ -6,6 +6,7 @@ module.exports = (message, namel) => {
 let num = Number(namel.replace("etape ", ""))
 let path = './guilds/' + message.channel.guild
 let raw = JSON.parse(fs.readFileSync(`${path}/${message.channel.guild}.json`))
+
 let fail = 'Vide'
 try {fail = require(`.${path}/fail/${num}.js`)}
 catch(err) {}
@@ -13,7 +14,7 @@ let suc = 'Vide'
 try { suc = require(`.${path}/success/${num}.js`)}
 catch(err) {}
 let code = 'Vide'
-if(raw.answers[namel].hasOwnProperty('code')) {code = raw.answers[namel].code}
+if (raw.answers[namel].hasOwnProperty('code')) {code = raw.answers[namel].code}
 let att = 'https://i.imgur.com/QMutsdY.png'
 if (raw.answers[namel].hasOwnProperty('file')) {att = raw.answers[namel].file}
 

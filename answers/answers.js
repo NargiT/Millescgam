@@ -3,7 +3,12 @@ const { Attachment } = require('discord.js')
 
 exports.run = (message, main) => {
 
-	let Serv = main.guilds.find(s => s.members.has(message.author.id))
+  let playerData = JSON.parse(fs.readFileSync('./players.json'))
+  let Serv = main.guilds.find(s => s.name === playerData[message.author.id][playerData[message.author.id].length - 1])
+  if (Serv === null) {return message.reply('Vous êtes l\'admin, adressez vous aux développeurs si vous voulez jouer à votre propre jeu. Si vous n\'êtes pas admin, adressez vous à l\'Admin ')}
+
+
+
 	let dude = Serv.member(message.author.id)
 	let dudeRole = []
 	let msg = message.content.toLowerCase()

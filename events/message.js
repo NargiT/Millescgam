@@ -36,9 +36,9 @@ main.on('message', message => {
 
 
 	if (message.content === data.start) {
-		main
-	  .guilds
-	   .find(s => message.channel.guild)
+
+		message.channel
+	  .guild
 	    .member(message.author.id)
 			 .addRole(
 			   message.channel.guild.roles

@@ -18,7 +18,7 @@ module.exports = (message) => {
                        .awaitMessages(filter, {max: 1})
                        .then(e => {
                              data.etapes = Number(e.first().content.replace("#",""))
-                             console.log(data.etapes)
+
                              if (isNaN(data.etapes)) {return (message.channel.send('Erreur dans la déclaration. Réessayez.'))}
 
                              msg.channel.send('souhaitez vous confimer ' + data.etapes + ' étapes ? #oui/#non')

@@ -6,5 +6,6 @@ module.exports = main
 	require('./events/ready.js')
 	require('./events/guildMemberAdd.js')
 	require('./events/message.js')
+	require('./events/guildMemberRemove.js')
 
-main.login('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+main.login('Njk1OTU4MTE0MzY4ODgwNzIw.Xq7Hyg.5dDMizRkgz7afYpEFg0D-LzVeV8')

@@ -1,0 +1,20 @@
+{
+  "answers": {
+    "etape 0": {},
+    "etape 1": {
+      "code": [
+        "coucou"
+      ]
+    },
+    "etape 2": {
+      "code": [
+        "coucou"
+      ]
+    },
+    "etape 3": {},
+    "etape 4": {},
+    "final": "Explorateurs"
+  },
+  "etapes": 4,
+  "start": "!start"
+}
